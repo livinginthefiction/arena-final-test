@@ -9,96 +9,162 @@
     <script src="https://sdk.twilio.com/js/video/releases/2.22.1/twilio-video.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <style>
+        /* Keyframes animation for vibrate effect */
+        @keyframes vibrate {
+            0% {transform: translateX(0);}
+            20% {transform: translateX(-5px);}
+            40% {transform: translateX(5px);}
+            60% {transform: translateX(-5px);}
+            80% {transform: translateX(5px);}
+            100% {transform: translateX(0);}
+        }
+
+        /* Keyframes animation for grow & shrink effect */
+        @keyframes growShrink {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.1);}
+            100% {transform: scale(1);}
+        }
+
+        /* Apply both animations to the same element */
+        .animated-element {
+            animation: vibrate 1s infinite, growShrink 2s infinite; /* Adjust durations as needed */
+        }
+    </style>
 </head>
 <body>
   <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
+        <span class="fs-4">Video Calling App</span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link">Welcome <?= session('user')['username'] ?>!</a></li>
+        <li class="nav-item"><a href="<?= base_url('login/logout'); ?>" class="nav-link active" aria-current="page">Logout</a></li>
+      </ul>
+    </header>
+
     <div class="row m-5">
-    <div class="col-md-6">
-      <h2>LOCAL</h2>
-      <div id="local-video-container"></div>
-      <input type="text" value="newRoom" class="form-control m-2" id="nr" aria-describedby="emailHelp">
-      <input type="text" value="shubhamm" class="form-control m-2" id="idnr" aria-describedby="emailHelp">
-      <button id="newRoom" type="submit" class="btn btn-primary m-2">Submit</button>
+    <div id="local" class="col-md-6">
+        <h2>LOCAL</h2>
+        <div id="local-video-container"></div>
+        <input type="text" value="newRoom" class="form-control m-2" id="nr" aria-describedby="emailHelp">
+        <input type="text" value="<?= session('user')['username'] ?>" class="form-control m-2" id="idnr" aria-describedby="emailHelp">
+        <select class="form-select m-2" id="caller" aria-label="Default select example">
+            <?php foreach ($usersExceptCurrent as $value) { print_r($value);?>
+                <option value="<?= $value['userid'] ?>"><?= $value['username'] ?></option>
+            <?php } ?>
+        </select>
+      <button id="newRoom" type="submit" class="btn btn-success w-100 m-2">Call</button>
+      <button id="endRoom" type="submit" class="btn btn-danger w-100 m-2">End Call</button>
     </div>
-    <div class="col-md-6">
-      <h2>REMOTE</h2>
-      <div id="remote-video-container"></div>
-      <input type="text" value="newRoom" class="form-control m-2" id="jr" aria-describedby="emailHelp">
-      <input type="text" value="arena" class="form-control m-2" id="idjr" aria-describedby="emailHelp">
-      <button id="joinRoom" type="submit" class="btn btn-primary m-2">Submit</button>
+    <div id="remote" class="col-md-6">
+        <h2>REMOTE</h2>
+        <div id="remote-video-container"></div>
+        <div id="remote-button">
+            <input type="text" class="form-control m-2" id="jr" aria-describedby="emailHelp">
+            <input type="text" value="<?= session('user')['username'] ?>" class="form-control m-2" id="idjr" aria-describedby="emailHelp">
+            <input type="hidden" value="" class="form-control m-2" id="jrsessionid" aria-describedby="emailHelp">
+            <button id="joinRoom" type="submit" class="btn btn-success w-100 m-2 animated-element">Accept Call</button>
+      </div>
+      
     </div>
   </div>
   </div>
 <script type="text/javascript">
-        document.getElementById('newRoom').addEventListener('click', () => {
-            let newRoomName = document.getElementById('nr').value;
-            let participantIdentity = document.getElementById('idnr').value;
+    // $(document).ready(function(){
+    //     $("#remote").hide();
+    //     $("#endRoom").hide();
+    // });
 
-            let localVideoContainer = document.getElementById('local-video-container');
-            let remoteVideoContainer = document.getElementById('remote-video-container');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hide the elements by their IDs
+        var remoteElement = document.getElementById('remote-button').style.display = 'none';
+        var endRoomElement = document.getElementById('endRoom').style.display = 'none';
+    });
 
-            fetch('/dashboard/createroom.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    identity: participantIdentity,
-                    room: newRoomName
-                })
+
+    document.getElementById('newRoom').addEventListener('click', () => {
+        let newRoomName = document.getElementById('nr').value;
+        let participantIdentity = document.getElementById('idnr').value;
+        let receiver = document.getElementById('caller').value;
+
+        let localVideoContainer = document.getElementById('local-video-container');
+        let remoteVideoContainer = document.getElementById('remote-video-container');
+
+        fetch('/dashboard/createroom', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                identity: participantIdentity,
+                room: newRoomName,
+                receiver: receiver
             })
-            .then(response => response.json())
-            .then(data => {
-                const token = data.token;
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('endRoom').style.display = 'block';
+            const token = data.token;
+            return Twilio.Video.createLocalVideoTrack().then(localVideoTrack => {
+                localVideoContainer.appendChild(localVideoTrack.attach());
 
-                return Twilio.Video.createLocalVideoTrack().then(localVideoTrack => {
-                    localVideoContainer.appendChild(localVideoTrack.attach());
-
-                    return Twilio.Video.connect(token, {
-                        name: newRoomName,
-                        tracks: [localVideoTrack]
-                    });
+                return Twilio.Video.connect(token, {
+                    name: newRoomName,
+                    tracks: [localVideoTrack]
                 });
-            })
-            .then(room => {
-                console.log(`Successfully joined room ${room.name}`);
-
-                room.on('participantConnected', participant => {
-                    participant.tracks.forEach(track => {
-                        if (track.isSubscribed) {
-                            remoteVideoContainer.appendChild(track.attach());
-                        }
-                    });
-
-                    participant.on('trackSubscribed', track => {
-                        remoteVideoContainer.appendChild(track.attach());
-                    });
-                });
-            })
-            .catch(error => {
-                console.error(`Error joining room: ${error.message}`);
             });
-        });
+        })
+        .then(room => {
+            console.log(`Successfully joined room ${room.name}`);
 
+            room.on('participantConnected', participant => {
+                participant.tracks.forEach(track => {
+                    if (track.isSubscribed) {
+                        remoteVideoContainer.appendChild(track.attach());
+                    }
+                });
+
+                participant.on('trackSubscribed', track => {
+                    remoteVideoContainer.appendChild(track.attach());
+                });
+            });
+        })
+        .catch(error => {
+            console.error(`Error joining room: ${error.message}`);
+        });
+    });
+// =============================================
         document.getElementById('joinRoom').addEventListener('click', () => {
             let newRoomName = document.getElementById('jr').value;
             let joinparticipantIdentity = document.getElementById('idjr').value;
+            let jrsessionid = document.getElementById('jrsessionid').value;
 
             let localVideoContainer = document.getElementById('local-video-container');
             let remoteVideoContainer = document.getElementById('remote-video-container');
 
-            fetch('/dashboard/join-room.php', {
+            fetch('/dashboard/joinroom', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     identity: joinparticipantIdentity,
-                    room: newRoomName
+                    room: newRoomName,
+                    sessionID: jrsessionid
                 })
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById('endRoom').style.display = 'block';
+                var countdown = 60; 
+                var timer = setInterval(function() {countdown--;if (countdown < 0) {clearInterval(timer);endcall(jrsessionid);}}, 1000); 
+
                 const token = data.token;
 
                 return Twilio.Video.createLocalVideoTrack().then(localVideoTrack => {
@@ -130,8 +196,52 @@
                 console.error(`Error joining room: ${error.message}`);
             });
         });
-    </script> 
-  
+
+// ======================================
+    document.getElementById('joinRoom').addEventListener('click', () => {
+            let newRoomName = document.getElementById('jr').value;
+            let jrsessionid = document.getElementById('jrsessionid').value;
+
+            fetch('/dashboard/endroom', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    room: newRoomName,
+                    sessionID: jrsessionid
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                
+            })
+            .catch(error => {
+                console.error(`Error: ${error.message}`);
+            });
+        });
+
+// =================================================================
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('40f0f1503664d8977ab7', {
+      cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('arenatest');
+    channel.bind('call_event', function(data) {
+        document.getElementById('jrsessionid').value=data.sessionID;
+        if (data.receiver== <?= session('user')['userid'] ?> ) {
+         // data=JSON.parse(data);
+            console.log(data);
+            document.getElementById('remote-button').style.display = 'block';   
+            document.getElementById('jr').value=data.roomname;
+        }
+        
+    });
+  </script>
+
 <script type="text/javascript">
 // Get a reference to the video container
 //  var roomName;

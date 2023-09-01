@@ -8,7 +8,7 @@ use CodeIgniter\Model;
 class UserModel extends Model {
     protected $table = 'users';
     protected $primaryKey = 'userid';
-    protected $allowedFields = ['email', 'password_hash', 'username']; // Add more fields as needed
+    protected $allowedFields = ['userid', 'email', 'password_hash', 'username']; // Add more fields as needed
 
     public function getUserByEmail($email) {
         return $this->select($this->allowedFields)->where('email', $email)->first();
@@ -26,5 +26,11 @@ class UserModel extends Model {
 
     public function createUser($data) {
         return $this->insert($data);
+    }
+
+    public function getUsersExceptCurrent($currentUserId) {
+        return $this->select('userid, username')
+            ->where('userid !=', $currentUserId)
+            ->findAll();
     }
 }
