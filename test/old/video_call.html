@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Call</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.19.0/twilio-video.min.js"></script>
+</head>
+<body>
+    <div id="video-container"></div>
+    <button id="start-call">Start Call</button>
+    <button id="end-call">End Call</button>
+
+    <script>
+        $(document).ready(function () {
+            var startCallButton = $('#start-call');
+            var endCallButton = $('#end-call');
+            var videoContainer = $('#video-container');
+            var accessToken; // Will store the fetched access token
+            
+            startCallButton.click(function () {
+                // Fetch the access token using jQuery AJAX
+                $.get('index.php', function (data) {
+                    accessToken = JSON.parse(data).token;
+                    initializeVideoCall();
+                }).fail(function () {
+                    console.error('Failed to fetch access token');
+                });
+            });
+
+            function initializeVideoCall() {
+                var videoClient = new Twilio.Video.Client(accessToken);
+
+                videoClient.connect({
+                    to: 'my-room', // Replace with your room name
+                }).then(function (room) {
+                    console.log('Connected to Room:', room.name);
+
+                    room.localParticipant.tracks.forEach(function (track) {
+                        videoContainer.append(track.attach());
+                    });
+
+                    room.on('participantConnected', function (participant) {
+                        console.log('Participant connected:', participant.identity);
+
+                        participant.tracks.forEach(function (track) {
+                            videoContainer.append(track.attach());
+                        });
+                    });
+
+                    endCallButton.click(function () {
+                        room.disconnect();
+                    });
+                }).catch(function (error) {
+                    console.error('Error connecting to Room:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

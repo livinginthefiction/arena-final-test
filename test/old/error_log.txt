@@ -1,0 +1,5 @@
+[27-Aug-2023 11:09:48 UTC] PHP Fatal error:  Uncaught TypeError: Twilio\Jwt\AccessToken::__construct(): Argument #4 ($ttl) must be of type int, string given, called in /home/u313289538/domains/thedubaibusiness.com/public_html/arena/test/index.php on line 23 and defined in /home/u313289538/domains/thedubaibusiness.com/public_html/arena/test/vendor/twilio/sdk/src/Twilio/Jwt/AccessToken.php:21
+Stack trace:
+#0 /home/u313289538/domains/thedubaibusiness.com/public_html/arena/test/index.php(23): Twilio\Jwt\AccessToken->__construct()
+#1 {main}
+  thrown in /home/u313289538/domains/thedubaibusiness.com/public_html/arena/test/vendor/twilio/sdk/src/Twilio/Jwt/AccessToken.php on line 21

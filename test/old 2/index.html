@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twilio Video Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://sdk.twilio.com/js/video/releases/2.22.1/twilio-video.min.js"></script>
+</head>
+<body>
+    <div id="video-container"></div>
+    <button id="join-call">Join Call</button>
+    <button id="add-participant">Add Participant</button>
+    <button id="leave-call">Leave Call</button>
+
+    <script>
+        $(document).ready(function () {
+            // var videoContainer = $('#video-container');
+            var videoContainer = document.getElementById('video-container');
+            var joinButton = $('#join-call');
+            var addParticipantButton = $('#add-participant');
+            var leaveButton = $('#leave-call');
+            var roomSid;
+            var roomName;
+            var token;
+
+            joinButton.click(function () {
+                $.get('create-room.php', function (data) {
+                    data=JSON.parse(data);
+                    token = data.token;
+                    console.log('data',data);
+                    roomSid = data.roomSid;
+                    roomName = data.roomName;
+                    initializeVideoCall2(token,roomSid,roomName);
+                });
+            });
+
+            addParticipantButton.click(function () {
+                $.get('add-participant.php?roomSid='+roomSid, function () {
+                    console.log('Participant added');
+                });
+            });
+
+
+
+// function initializeVideoCall(token, roomSid) {
+//     Twilio.Video.connect(token, {
+//         room: roomSid,
+//         audio: true,
+//         video: { width: 640 }
+//     }).then(function (room) {
+//         console.log('Connected to room:', roomSid);
+
+//          room.localParticipant.videoTracks.forEach(function (track) {
+//             console.log(track);
+//             // Handle video track
+//             var videoElement = document.createElement('video');
+//             videoElement.srcObject = track.mediaStreamTrack;
+//             videoElement.autoplay = true;
+//             videoElement.playsInline = true;
+//             videoElement.controls = true;
+//             videoElement.frameWidth = 640;
+//             videoContainer.appendChild(videoElement);
+//         });
+//         console.log('reached');
+//      room.on('participantConnected', function (participant) {
+//     console.log('Participant connected:', participant);
+
+//     participant.tracks.forEach(function (track) {
+//         console.log('Track kind:', track.kind); // Check the kind of track
+//         console.log('Track :', track); // Check the kind of track
+
+//         if (track.kind === 'video' && track.mediaStreamTrack) {
+//             console.log('Frame width:', track.frameWidth); // Check the frameWidth
+//             console.log('Frame height:', track.frameHeight); // Check the frameHeight
+
+//             // Attach the video track to a video element and append it to the DOM
+//             var videoElement = document.createElement('video');
+//             videoElement.srcObject = track.mediaStreamTrack;
+//             videoElement.autoplay = true;
+//             videoElement.playsInline = true;
+//             videoElement.controls = true;
+//             videoContainer.appendChild(videoElement);
+//         } else if (track.kind === 'audio' && track.mediaStreamTrack) {
+//             // Handle audio track
+//             var audioElement = document.createElement('audio');
+//             audioElement.srcObject = track.mediaStreamTrack;
+//             audioElement.autoplay = true;
+//             audioElement.controls = true;
+//             videoContainer.appendChild(audioElement);
+//         } else {
+//             console.log('Invalid or null track:', track);
+//         }
+//     });
+// });
+
+
+
+//         leaveButton.click(function () {
+//             room.disconnect();
+//         });
+//     }).catch(function (error) {
+//         console.error('Error connecting to room:', error);
+//     });
+// }
+
+
+ function initializeVideoCall2(token, roomSid,roomName) {
+    new Twilio.Video.connect(token, {
+        room: roomSid,
+        audio: true,
+        video: { width: 640 }
+    }).then(function (room) {
+        console.log('Connected to room:', roomSid);
+        console.log('room:', room);
+
+         room.localParticipant.videoTracks.forEach(function (track) {
+            console.log('track',track);
+            // Handle video track
+            var videoElement = document.createElement('video');
+            videoElement.srcObject = track.mediaStreamTrack;
+            videoElement.autoplay = true;
+            videoElement.playsInline = true;
+            videoElement.controls = true;
+            videoElement.frameWidth = 640;
+            videoContainer.appendChild(videoElement);
+        });
+    
+
+    }).catch(function (error) {
+        console.error('Error connecting to room:', error);
+    });
+}
+
+
+
+            leaveButton.click(function () {
+                $.get('end-room.php', { roomSid: roomSid }, function () {
+                    console.log('Room ended');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

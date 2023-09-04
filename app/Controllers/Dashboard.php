@@ -77,7 +77,7 @@ class Dashboard extends BaseController {
 
         $pusher = new Pusher($app_key, $app_secret, $app_id, ['cluster' => $app_cluster]);
 
-        $pusherData = array('roomname' => $room->uniqueName,'receiver' => $receiver,'sessionID' => $sessionID, );
+        $pusherData = array('roomname' => $room->uniqueName,'roomSid' => $room->sid,'receiver' => $receiver,'sessionID' => $sessionID, );
         $pusher->trigger('arenatest', 'call_event', $pusherData);
 
         echo json_encode([
@@ -98,9 +98,9 @@ class Dashboard extends BaseController {
         
         $twilioClient = new Client($accountSid, $authToken);
         $_POST = json_decode(file_get_contents('php://input'), true);
-        $identity = $_POST['identity']; // Replace with actual user identity
-        $roomName = $_POST['room']; // Replace with desired room name
-        $sessionID = $_POST['sessionID']; // Replace with desired room name
+        $identity = $_POST['identity']; 
+        $roomName = $_POST['room'];
+        $sessionID = $_POST['sessionID'];
 
         // Generate Access Token
         $ttl = 60; // Time-to-live in seconds
@@ -123,12 +123,33 @@ class Dashboard extends BaseController {
         ]);
     }
 
-    public function Pusher() {
+    public function endroom() {
+        // Include the autoload.php file
         require_once(APPPATH . '../vendor/autoload.php');
-        $app_id = config('app_id')->accountSid; 
-        $app_key = config('key')->accountSid; 
-        $app_secret = config('secret')->accountSid; 
-        $app_cluster = config('cluster')->accountSid; 
-        $pusher = new Pusher\Pusher($app_key, $app_secret, $app_id, ['cluster' => $app_cluster]);
+        $accountSid = config('Twilio')->accountSid;
+        $authToken = config('Twilio')->authToken;
+
+        $client = new Client($accountSid, $authToken); 
+        $_POST = json_decode(file_get_contents('php://input'), true);
+        $roomSid = $_POST['roomSid'];
+        $sessionID = $_POST['sessionID'];
+
+        $videoCallSessionModel = new VideoCallSessionModel();
+        $videoCallSessionModel->endSession($sessionID);
+
+        // List participants in the room
+        $participants = $client->video->rooms($roomSid)
+            ->participants
+            ->read();
+
+        // Loop through participants and disconnect them
+        foreach ($participants as $participant) {
+            $participant->update(['status' => 'disconnected']);
+        }
+
+        // Update the room status to completed
+        $room = $room = $client->video->v1->rooms($roomSid)
+                                        ->update("completed");   
     }
+
 }
