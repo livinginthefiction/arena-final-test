@@ -1,0 +1,179 @@
+CRITICAL - 2023-09-04 06:30:43 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RMd85ab98aa4608cf024a2a34567341e51/Participants/PAa8d989bcae2fca51325acd272db461b6 was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:46:14 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:46:23 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:46:24 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:25 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:28 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:32 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:39 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:45 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:53 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:48:55 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:49:01 --> [HTTP 400] Unable to create record: Room exists
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(223): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/RoomList.php(92): Twilio\Version->create()
+ 3 APPPATH/Controllers/Dashboard.php(67): Twilio\Rest\Video\V1\RoomList->create()
+ 4 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->createroom()
+ 5 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:51:05 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM89d0e8e1766ef9fd3e681e16bf7776f3/Participants/PA15166b0b602095b4b0652b03247715b1 was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:51:57 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM614bd9d409f3c4f175a43680cfefd44c/Participants/PAa403e084792e70e121a066f5fe313c8e was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:51:59 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM614bd9d409f3c4f175a43680cfefd44c/Participants/PAa403e084792e70e121a066f5fe313c8e was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:52:10 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM614bd9d409f3c4f175a43680cfefd44c/Participants/PAa403e084792e70e121a066f5fe313c8e was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:52:12 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM614bd9d409f3c4f175a43680cfefd44c/Participants/PAa403e084792e70e121a066f5fe313c8e was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:52:13 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM614bd9d409f3c4f175a43680cfefd44c/Participants/PAa403e084792e70e121a066f5fe313c8e was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-09-04 06:52:15 --> [HTTP 404] Unable to update record: The requested resource /Rooms/RM614bd9d409f3c4f175a43680cfefd44c/Participants/PAa403e084792e70e121a066f5fe313c8e was not found
+in FCPATH/vendor/twilio/sdk/src/Twilio/Version.php on line 88.
+ 1 FCPATH/vendor/twilio/sdk/src/Twilio/Version.php(139): Twilio\Version->exception()
+ 2 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantContext.php(112): Twilio\Version->update()
+ 3 FCPATH/vendor/twilio/sdk/src/Twilio/Rest/Video/V1/Room/ParticipantInstance.php(125): Twilio\Rest\Video\V1\Room\ParticipantContext->update()
+ 4 APPPATH/Controllers/Dashboard.php(147): Twilio\Rest\Video\V1\Room\ParticipantInstance->update()
+ 5 SYSTEMPATH/CodeIgniter.php(915): App\Controllers\Dashboard->endroom()
+ 6 SYSTEMPATH/CodeIgniter.php(492): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
